@@ -1,3 +1,5 @@
+// File: contracts/tokens/erc721.sol
+
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
@@ -144,6 +146,7 @@ interface ERC721 {
 }
 
 // File: contracts/tokens/erc721-token-receiver.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -173,6 +176,7 @@ interface ERC721TokenReceiver {
 }
 
 // File: contracts/utils/erc165.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -193,6 +197,7 @@ interface ERC165 {
 }
 
 // File: contracts/utils/supports-interface.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -227,6 +232,7 @@ contract SupportsInterface is ERC165 {
 }
 
 // File: contracts/utils/address-utils.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -264,6 +270,7 @@ library AddressUtils {
 }
 
 // File: contracts/tokens/nf-token.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -590,7 +597,7 @@ contract NFToken is ERC721, SupportsInterface {
     }
 
     /**
-     * @dev Helper function that gets NFT count of owner. This is needed for overriding in enumerable
+     * @dev Helper function that gets NFT count of owner. This is needed for overriding in enumerable
      * extension to remove double storage (gas optimization) of owner nft count.
      * @param _owner Address for whom to query the count.
      * @return Number of _owner NFTs.
@@ -650,6 +657,7 @@ contract NFToken is ERC721, SupportsInterface {
 }
 
 // File: contracts/tokens/erc721-metadata.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -679,6 +687,7 @@ interface ERC721Metadata {
 }
 
 // File: contracts/tokens/nf-token-metadata.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -699,6 +708,11 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
      * @dev Mapping from NFT ID to metadata uri.
      */
     mapping(uint256 => string) internal idToUri;
+
+    /**
+     * @dev Array of all NFT IDs.
+     */
+    uint256[] internal tokens;
 
     /**
      * @dev Contract constructor.
@@ -722,6 +736,22 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
      */
     function symbol() external view override returns (string memory _symbol) {
         _symbol = nftSymbol;
+    }
+
+    /**
+     * @dev Returns the count of all existing NFTokens.
+     * @return Total supply of NFTs.
+     */
+    function totalSupply() external view returns (uint256) {
+        return tokens.length;
+    }
+
+    /**
+     * @dev Push NFT token to array.
+     * @param _tokenId Id for which we want to push.
+     */
+    function _push(uint256 _tokenId) internal validNFToken(_tokenId) {
+        tokens.push(_tokenId);
     }
 
     /**
@@ -772,6 +802,7 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
 }
 
 // File: contracts/ownership/ownable.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -828,6 +859,7 @@ contract Ownable {
 }
 
 // File: contracts/UserContract.sol
+
 pragma solidity >=0.4.22 <0.9.0;
 
 /**
@@ -837,9 +869,9 @@ contract UserContract is NFTokenMetadata, Ownable {
     /**
      * @dev Contract constructor. Sets metadata extension `name` and `symbol`.
      */
-    constructor() {
-        nftName = "CONTRACT_NAME";
-        nftSymbol = "CONTRACT_SYMBOL";
+    constructor(string memory contractName, string memory contractSymbol) {
+        nftName = contractName;
+        nftSymbol = contractSymbol;
     }
 
     /**
@@ -855,5 +887,14 @@ contract UserContract is NFTokenMetadata, Ownable {
     ) external onlyOwner {
         super._mint(_to, _tokenId);
         super._setTokenUri(_tokenId, _uri);
+        super._push(_tokenId);
+    }
+
+    /**
+     * @dev Burn an NFT.
+     * @param _tokenId of the NFT to be burned by the msg.sender.
+     */
+    function burn(uint256 _tokenId) external onlyOwner {
+        super._burn(_tokenId);
     }
 }

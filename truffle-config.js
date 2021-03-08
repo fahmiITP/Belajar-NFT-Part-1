@@ -1,4 +1,5 @@
 require('dotenv').config();
+// const HDWallet = require('truffle-hdwallet-provider');
 
 /**
  * Use this file to configure your truffle project. It's seeded with some
@@ -20,7 +21,7 @@ require('dotenv').config();
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
@@ -112,5 +113,11 @@ module.exports = {
 
   db: {
     enabled: false
+  },
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API_KEY
   }
 };

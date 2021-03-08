@@ -24,6 +24,11 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
     mapping(uint256 => string) internal idToUri;
 
     /**
+     * @dev Array of all NFT IDs.
+     */
+    uint256[] internal mintedTokens;
+
+    /**
      * @dev Contract constructor.
      * @notice When implementing this contract don't forget to set nftName and nftSymbol.
      */
@@ -45,6 +50,22 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
      */
     function symbol() external view override returns (string memory _symbol) {
         _symbol = nftSymbol;
+    }
+
+    /**
+     * @dev Returns the count of all existing NFTokens.
+     * @return Total supply of NFTs.
+     */
+    function totalToken() external view returns (uint256) {
+        return mintedTokens.length;
+    }
+
+    /**
+     * @dev Push NFT token to array.
+     * @param _tokenId Id for which we want to push.
+     */
+    function _push(uint256 _tokenId) internal validNFToken(_tokenId) {
+        mintedTokens.push(_tokenId);
     }
 
     /**

@@ -3,7 +3,7 @@ const ContractCompiler = require('./compiler');
 const Ethers = require('ethers');
 
 // Get compiled contract result
-var ContractResult = ContractCompiler('Test', 'TST');
+var ContractResult = ContractCompiler();
 const UserContractABI = ContractResult.contracts["UserContractFlattened.sol"].UserContract.abi;
 const UserContractBytecode = ContractResult.contracts["UserContractFlattened.sol"].UserContract.evm.bytecode.object;
 

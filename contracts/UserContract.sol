@@ -11,9 +11,9 @@ contract UserContract is NFTokenMetadata, Ownable {
     /**
      * @dev Contract constructor. Sets metadata extension `name` and `symbol`.
      */
-    constructor() {
-        nftName = "CONTRACT_NAME";
-        nftSymbol = "CONTRACT_SYMBOL";
+    constructor(string memory contractName, string memory contractSymbol) {
+        nftName = contractName;
+        nftSymbol = contractSymbol;
     }
 
     /**
@@ -29,5 +29,14 @@ contract UserContract is NFTokenMetadata, Ownable {
     ) external onlyOwner {
         super._mint(_to, _tokenId);
         super._setTokenUri(_tokenId, _uri);
+        super._push(_tokenId);
+    }
+
+    /**
+     * @dev Burn an NFT.
+     * @param _tokenId of the NFT to be burned by the msg.sender.
+     */
+    function burn(uint256 _tokenId) external onlyOwner {
+        super._burn(_tokenId);
     }
 }
