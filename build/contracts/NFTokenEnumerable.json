@@ -14078,7 +14078,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-08T08:54:50.366Z",
+  "updatedAt": "2021-03-09T09:34:38.050Z",
   "devdoc": {
     "details": "Optional enumeration implementation for ERC-721 non-fungible token standard.",
     "kind": "dev",

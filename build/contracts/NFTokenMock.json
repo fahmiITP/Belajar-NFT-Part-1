@@ -7296,7 +7296,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-08T08:54:50.285Z",
+  "updatedAt": "2021-03-09T09:34:37.948Z",
   "devdoc": {
     "details": "This is an example contract implementation of NFToken.",
     "kind": "dev",
