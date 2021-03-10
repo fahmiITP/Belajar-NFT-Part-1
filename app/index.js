@@ -2,7 +2,6 @@ var express = require("express");
 var abiEncoder = require('../services/encodeAbi');
 var getContractBytecode = require('../services/getContractBytecode');
 var getContractAbi = require('../services/getContractAbi');
-var mintToken = require('../services/mintToken');
 var app = express();
 var cors = require('cors');
 
@@ -30,14 +29,6 @@ app.get("/bytecode", (req, res) => {
 // Get Contract ABI (Human Readable ABI)
 app.get("/abi", (req, res) => {
     let result = getContractAbi();
-    res.send(result);
-});
-
-// Get Contract ABI (Human Readable ABI)
-app.get("/mintToken", (req, res) => {
-    var address = req.query.address;
-    var provider = req.query.provider;
-    let result = mintToken(address, provider);
     res.send(result);
 });
 
