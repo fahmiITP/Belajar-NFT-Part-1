@@ -6,9 +6,12 @@
   },
   "dependencies": {
     "@truffle/hdwallet-provider": "^1.2.2",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "ethers": "^4.0.48",
     "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
     "solc": "^0.8.2",
     "truffle": "^5.2.2",
     "truffle-plugin-verify": "^0.5.6",

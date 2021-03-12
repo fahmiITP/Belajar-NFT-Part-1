@@ -1,11 +1,21 @@
 var express = require("express");
+const bodyParser = require('body-parser');
 var abiEncoder = require('../services/encodeAbi');
 var getContractBytecode = require('../services/getContractBytecode');
 var getContractAbi = require('../services/getContractAbi');
+const userRouter = require('./routes/users');
+const contractRouter = require('./routes/contracts');
+const tokenRouter = require('./routes/tokens');
 var app = express();
 var cors = require('cors');
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+);
 
 /* 
     Encode the parameters abi,
@@ -17,19 +27,38 @@ app.get("/encode", (req, res) => {
     const contractSymbol = req.query.contractSymbol;
 
     let result = abiEncoder(contractName, contractSymbol);
-    res.send(result);
-});
+    let bytecode = getContractBytecode();
 
-// Get current compiled contract bytecode
-app.get("/bytecode", (req, res) => {
-    let result = getContractBytecode();
-    res.send(result);
+    res.send(bytecode + result);
 });
 
 // Get Contract ABI (Human Readable ABI)
 app.get("/abi", (req, res) => {
     let result = getContractAbi();
     res.send(result);
+});
+
+app.get("/", (req, res) => {
+    res.send('Server Running');
+});
+
+// Users Routes
+app.use('/users', userRouter);
+
+// Contracts Route
+app.use('/contracts', contractRouter);
+
+// Contracts Route
+app.use('/tokens', tokenRouter);
+
+/* Error handler middleware */
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    console.error(err.message, err.stack);
+    res.status(statusCode).json({ 'message': err.message });
+
+
+    return;
 });
 
 app.listen(3000, () => {
