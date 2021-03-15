@@ -5,9 +5,17 @@ const config = require('../config');
 /// Get contract data based on contract address
 async function getContract(contract) {
     const rows = await db.query(
-        `SELECT id, contract_owner, contract_address, contract_abi FROM contracts WHERE contract_address = ${contract.contract_address}`,
+        `SELECT id, contract_owner, contract_address, contract_abi FROM contracts WHERE contract_address = "${contract.contract_address}"`,
     );
 
+    return { rows }
+}
+
+/// Get user contract data based
+async function getUserContracts(contract) {
+    const rows = await db.query(
+        `SELECT id, contract_owner, contract_address, contract_abi FROM contracts WHERE contract_owner LIKE "${contract.owner_address}"`,
+    );
     return { rows }
 }
 
@@ -33,5 +41,6 @@ async function create(contract) {
 
 module.exports = {
     getContract,
+    getUserContracts,
     create
 }

@@ -1,5 +1,5 @@
 var express = require("express");
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 var abiEncoder = require('../services/encodeAbi');
 var getContractBytecode = require('../services/getContractBytecode');
 var getContractAbi = require('../services/getContractAbi');
@@ -10,12 +10,8 @@ var app = express();
 var cors = require('cors');
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(
-    bodyParser.urlencoded({
-        extended: true,
-    })
-);
+app.use(bodyParser.json({ limit: "200mb" }));
+app.use(bodyParser.urlencoded({ limit: "200mb", extended: true, parameterLimit: 1000000 }));
 
 /* 
     Encode the parameters abi,

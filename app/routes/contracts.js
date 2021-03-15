@@ -2,10 +2,20 @@ const express = require('express');
 const router = express.Router();
 const contract = require('../../db/contracts/contracts');
 
-/* GET Contract. */
+/* Get One Contract. */
 router.post('/', async function (req, res, next) {
     try {
         res.json(await contract.getContract(req.body));
+    } catch (err) {
+        console.error(`Error while getting contract `, err.message);
+        next(err);
+    }
+});
+
+/* Get User Contract. */
+router.post('/userContracts', async function (req, res, next) {
+    try {
+        res.json(await contract.getUserContracts(req.body));
     } catch (err) {
         console.error(`Error while getting contract `, err.message);
         next(err);
