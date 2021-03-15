@@ -67,7 +67,7 @@ async function burn(token) {
 /// update token to the DB
 async function transfer(token) {
     const result = await db.query(
-        `UPDATE token SET token_owner = ${token.new_owner} WHERE token_id = ${token.token_id} AND contract_address LIKE "${token.contract_address}")`,
+        `UPDATE token SET token_owner = ${token.new_owner} WHERE token_id = ${token.token_id} AND contract_address LIKE "${token.contract_address}"`,
     );
 
     let message = 'Error in transfering token';
