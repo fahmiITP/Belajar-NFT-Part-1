@@ -15,6 +15,17 @@
 - Run the index.js using node (node app/index.js).
 - App will run at http://localhost:3000.
 
+# How to Deploy
+- Clone this repository.
+- Rename the config file example from ".env.example" to ".env".
+- Fill in your config file such as DB_HOST and etc.
+- Pack or Compress the cloned repository.
+- Upload the packed file to the httpdocs on your hosting service.
+- Extract and move all the file inside to the root of your httpdocs.
+- Modify the app port at "app/index.js -> app.listen((process.env.PORT || 3000))" from 3000 to 8080 or else that your server can hold.
+- Configure your server's node js setting, make sure that make sure that the App Startup File is "app/index.js".
+- Run NPM Install and Restart your Server.
+
 # How to Deploy on Heroku
 - Clone this repository.
 - Make sure you have heroku-cli installed.
@@ -28,14 +39,3 @@
 - Go to "Config Vars", tap "Reveal Config".
 - Enter your config file just like the ".env.example".
 - You're Done.
-
-# How to Deploy
-- Clone this repository.
-- Rename the config file example from ".env.example" to ".env".
-- Fill in your config file such as DB_HOST and etc.
-- Pack or Compress the cloned repository.
-- Upload the packed file to the httpdocs on your hosting service.
-- Extract and move all the file inside to the root of your httpdocs.
-- Modify the app port at "app/index.js -> app.listen((process.env.PORT || 3000))" from 3000 to 8080 or else that your server can hold.
-- Configure your server's node js setting, make sure that make sure that the App Startup File is "app/index.js".
-- Run NPM Install and Restart your Server.
