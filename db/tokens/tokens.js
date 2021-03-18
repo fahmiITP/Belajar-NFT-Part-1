@@ -12,6 +12,16 @@ async function getUserTokens(token) {
   return { rows };
 }
 
+/// Get all user tokens
+async function getAllUserTokens(token) {
+  const rows = await db.query(
+    `SELECT id, token_id, token_owner, contract_address, name, description, image 
+        FROM token WHERE token_owner = "${token.owner_address}"`
+  );
+
+  return { rows };
+}
+
 /// Get one token on a contract
 async function getOneTokenFromContract(contract_address, token_id) {
   const rows = await db.query(
@@ -82,6 +92,7 @@ async function transfer(token) {
 module.exports = {
   getUserTokens,
   getOneTokenFromContract,
+  getAllUserTokens,
   create,
   burn,
   transfer,
