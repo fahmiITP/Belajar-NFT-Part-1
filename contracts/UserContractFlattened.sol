@@ -413,6 +413,31 @@ contract NFToken is ERC721, SupportsInterface {
      * @param _to The new owner.
      * @param _tokenId The NFT to transfer.
      */
+    function _buy(
+        address _from,
+        address _to,
+        uint256 _tokenId
+    ) internal canTransfer(_tokenId) validNFToken(_tokenId) {
+        address tokenOwner = idToOwner[_tokenId];
+        require(
+            tokenOwner == _from || ownerToOperators[tokenOwner][address(this)],
+            NOT_OWNER_OR_OPERATOR
+        );
+        require(_to != address(0), ZERO_ADDRESS);
+
+        _transfer(_to, _tokenId);
+    }
+
+    /**
+     * @dev Throws unless `msg.sender` is the current owner, an authorized operator, or the approved
+     * address for this NFT. Throws if `_from` is not the current owner. Throws if `_to` is the zero
+     * address. Throws if `_tokenId` is not a valid NFT. This function can be changed to payable.
+     * @notice The caller is responsible to confirm that `_to` is capable of receiving NFTs or else
+     * they maybe be permanently lost.
+     * @param _from The current owner of the NFT.
+     * @param _to The new owner.
+     * @param _tokenId The NFT to transfer.
+     */
     function transferFrom(
         address _from,
         address _to,
@@ -597,7 +622,7 @@ contract NFToken is ERC721, SupportsInterface {
     }
 
     /**
-     * @dev Helper function that gets NFT count of owner. This is needed for overriding in enumerable
+     * @dev Helper function that gets NFT count of owner. This is needed for overriding in enumerable
      * extension to remove double storage (gas optimization) of owner nft count.
      * @param _owner Address for whom to query the count.
      * @return Number of _owner NFTs.
@@ -712,7 +737,7 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
     /**
      * @dev Array of all NFT IDs.
      */
-    uint256[] internal tokens;
+    uint256[] internal mintedTokens;
 
     /**
      * @dev Contract constructor.
@@ -742,8 +767,8 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
      * @dev Returns the count of all existing NFTokens.
      * @return Total supply of NFTs.
      */
-    function totalSupply() external view returns (uint256) {
-        return tokens.length;
+    function totalToken() external view returns (uint256) {
+        return mintedTokens.length;
     }
 
     /**
@@ -751,7 +776,7 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
      * @param _tokenId Id for which we want to push.
      */
     function _push(uint256 _tokenId) internal validNFToken(_tokenId) {
-        tokens.push(_tokenId);
+        mintedTokens.push(_tokenId);
     }
 
     /**
@@ -798,6 +823,20 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
         validNFToken(_tokenId)
     {
         idToUri[_tokenId] = _uri;
+    }
+
+    /**
+     * @dev Buy an NFT.
+     * @param _tokenId of the NFT to be bought by the msg.sender.
+     */
+
+    function _buy(address buyer, uint256 _tokenId)
+        internal
+        virtual
+        validNFToken(_tokenId)
+        canTransfer(_tokenId)
+    {
+        super._buy(address(this), buyer, _tokenId);
     }
 }
 
@@ -896,5 +935,14 @@ contract UserContract is NFTokenMetadata, Ownable {
      */
     function burn(uint256 _tokenId) external onlyOwner {
         super._burn(_tokenId);
+    }
+
+    /**
+     * @dev Buy an NFT.
+     * @param _tokenId of the NFT to be bought by the msg.sender.
+     */
+
+    function buy(address buyer, uint256 _tokenId) external payable {
+        super._buy(buyer, _tokenId);
     }
 }

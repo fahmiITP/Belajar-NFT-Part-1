@@ -39,4 +39,13 @@ contract UserContract is NFTokenMetadata, Ownable {
     function burn(uint256 _tokenId) external onlyOwner {
         super._burn(_tokenId);
     }
+
+    /**
+     * @dev Buy an NFT.
+     * @param _tokenId of the NFT to be bought by the msg.sender.
+     */
+
+    function buy(address buyer, uint256 _tokenId) external payable {
+        super._buy(buyer, _tokenId);
+    }
 }

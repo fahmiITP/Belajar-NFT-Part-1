@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 // const HDWallet = require('truffle-hdwallet-provider');
 
 /**
@@ -21,14 +21,14 @@ require('dotenv').config();
  *
  */
 
-const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
-const INFURA_KEY = process.env.INFURA_API_KEY
-const RINKEBY_NODE_URL = 'https://rinkeby.infura.io/v3/' + INFURA_KEY;
+const INFURA_KEY = process.env.INFURA_API_KEY;
+const RINKEBY_NODE_URL = "https://rinkeby.infura.io/v3/" + INFURA_KEY;
 
 module.exports = {
   /**
@@ -48,16 +48,16 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    rinkeby: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, RINKEBY_NODE_URL),
-      network_id: 4,       // Rinkeby's id
-      gas: 5000000,
-    },
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
+    // rinkeby: {
+    //   provider: () => new HDWalletProvider(process.env.MNEMONIC, RINKEBY_NODE_URL),
+    //   network_id: 4,       // Rinkeby's id
+    //   gas: 5000000,
     // },
+    development: {
+      host: "127.0.0.1", // Localhost (default: none)
+      port: 7545, // Standard Ethereum port (default: none)
+      network_id: "*", // Any network (default: none)
+    },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -93,7 +93,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.0",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.0", // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
@@ -102,7 +102,7 @@ module.exports = {
       //  },
       //  evmVersion: "byzantium"
       // }
-    }
+    },
   },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled: false to enabled: true
@@ -112,12 +112,10 @@ module.exports = {
   // $ truffle migrate --reset --compile-all
 
   db: {
-    enabled: false
+    enabled: false,
   },
-  plugins: [
-    'truffle-plugin-verify'
-  ],
+  plugins: ["truffle-plugin-verify"],
   api_keys: {
-    etherscan: process.env.ETHERSCAN_API_KEY
-  }
+    etherscan: process.env.ETHERSCAN_API_KEY,
+  },
 };
