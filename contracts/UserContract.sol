@@ -3,11 +3,12 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "./tokens/nf-token-metadata.sol";
 import "./ownership/ownable.sol";
+import "./store/store.sol";
 
 /**
  * @dev This is an example contract implementation of NFToken with metadata extension.
  */
-contract UserContract is NFTokenMetadata, Ownable {
+contract UserContract is NFTokenMetadata, Ownable, Store {
     /**
      * @dev Contract constructor. Sets metadata extension `name` and `symbol`.
      */
@@ -38,14 +39,5 @@ contract UserContract is NFTokenMetadata, Ownable {
      */
     function burn(uint256 _tokenId) external onlyOwner {
         super._burn(_tokenId);
-    }
-
-    /**
-     * @dev Buy an NFT.
-     * @param _tokenId of the NFT to be bought by the msg.sender.
-     */
-
-    function buy(address buyer, uint256 _tokenId) external payable {
-        super._buy(buyer, _tokenId);
     }
 }

@@ -48,11 +48,12 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // rinkeby: {
-    //   provider: () => new HDWalletProvider(process.env.MNEMONIC, RINKEBY_NODE_URL),
-    //   network_id: 4,       // Rinkeby's id
-    //   gas: 5000000,
-    // },
+    rinkeby: {
+      provider: () =>
+        new HDWalletProvider(process.env.MNEMONIC, RINKEBY_NODE_URL),
+      network_id: 4, // Rinkeby's id
+      gas: 5000000,
+    },
     development: {
       host: "127.0.0.1", // Localhost (default: none)
       port: 7545, // Standard Ethereum port (default: none)

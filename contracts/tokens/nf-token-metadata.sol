@@ -113,18 +113,4 @@ contract NFTokenMetadata is NFToken, ERC721Metadata {
     {
         idToUri[_tokenId] = _uri;
     }
-
-    /**
-     * @dev Buy an NFT.
-     * @param _tokenId of the NFT to be bought by the msg.sender.
-     */
-
-    function _buy(address buyer, uint256 _tokenId)
-        internal
-        virtual
-        validNFToken(_tokenId)
-        canTransfer(_tokenId)
-    {
-        super._buy(buyer, _tokenId);
-    }
 }
