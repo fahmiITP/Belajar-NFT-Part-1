@@ -3,11 +3,12 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "./tokens/nf-token-metadata.sol";
 import "./ownership/ownable.sol";
+import "./store/store.sol";
 
 /**
  * @dev This is an example contract implementation of NFToken with metadata extension.
  */
-contract UserContract is NFTokenMetadata, Ownable {
+contract UserContract is NFTokenMetadata, Ownable, Store {
     /**
      * @dev Contract constructor. Sets metadata extension `name` and `symbol`.
      */

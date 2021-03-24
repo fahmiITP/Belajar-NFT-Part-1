@@ -74,7 +74,7 @@ async function burn(token) {
   return { message };
 }
 
-/// update token to the DB
+/// Update token to the DB
 async function transfer(token) {
   const result = await db.query(
     `UPDATE token SET token_owner = "${token.new_owner}" WHERE token_id = ${token.token_id} AND contract_address LIKE "${token.contract_address}"`
@@ -89,6 +89,23 @@ async function transfer(token) {
   return { message };
 }
 
+/// Update Token Sale State
+async function updateTokenSaleState(token) {
+  const result = await db.query(
+    `UPDATE token SET isOnSale = ${token.isOnSale}, price = ${token.price} 
+    WHERE token_id = ${token.token_id} AND contract_address LIKE "${token.contract_address}" 
+    AND token_owner LIKE "${token.token_owner}"`
+  );
+
+  let message = "Error in placing token on sale";
+
+  if (result.affectedRows) {
+    message = "Token placed on sale successfully";
+  }
+
+  return { message };
+}
+
 module.exports = {
   getUserTokens,
   getOneTokenFromContract,
@@ -96,4 +113,5 @@ module.exports = {
   create,
   burn,
   transfer,
+  updateTokenSaleState,
 };
