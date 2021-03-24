@@ -137,6 +137,29 @@ contract NFToken is ERC721, SupportsInterface {
     }
 
     /**
+     * @dev Throws unless user is approved the token to be sold. Throws if `_to` is the zero
+     * address. Throws if `_tokenId` is not a valid NFT. This function can be changed to payable.
+     * @notice The caller is responsible to confirm that `_to` is capable of receiving NFTs or else
+     * they maybe be permanently lost.
+     * @param _to The new owner.
+     * @param _tokenId The NFT to transfer.
+     */
+    function _buy(address _to, uint256 _tokenId)
+        internal
+        canTransfer(_tokenId)
+        validNFToken(_tokenId)
+    {
+        address tokenOwner = idToOwner[_tokenId];
+        require(
+            ownerToOperators[tokenOwner][address(this)],
+            NOT_OWNER_OR_OPERATOR
+        );
+        require(_to != address(0), ZERO_ADDRESS);
+
+        _transfer(_to, _tokenId);
+    }
+
+    /**
      * @dev Throws unless `msg.sender` is the current owner, an authorized operator, or the approved
      * address for this NFT. Throws if `_from` is not the current owner. Throws if `_to` is the zero
      * address. Throws if `_tokenId` is not a valid NFT. This function can be changed to payable.
