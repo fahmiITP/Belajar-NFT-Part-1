@@ -35,15 +35,15 @@
     "absolutePath": "/Users/fahmi/Downloads/Fahmi Learn/Blockchain/ScratchNFT/Belajar-NFT-Part-1/contracts/utils/erc165.sol",
     "exportedSymbols": {
       "ERC165": [
-        2294
+        2732
       ]
     },
-    "id": 2295,
+    "id": 2733,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2284,
+        "id": 2722,
         "literals": [
           "solidity",
           ">=",
@@ -62,44 +62,44 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2285,
+          "id": 2723,
           "nodeType": "StructuredDocumentation",
           "src": "66:115:17",
           "text": " @dev A standard for detecting smart contract interfaces.\n See: https://eips.ethereum.org/EIPS/eip-165."
         },
         "fullyImplemented": false,
-        "id": 2294,
+        "id": 2732,
         "linearizedBaseContracts": [
-          2294
+          2732
         ],
         "name": "ERC165",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 2286,
+              "id": 2724,
               "nodeType": "StructuredDocumentation",
               "src": "205:276:17",
               "text": " @dev Checks if the smart contract includes a specific interface.\n This function uses less than 30,000 gas.\n @param _interfaceID The interface identifier, as specified in ERC-165.\n @return True if _interfaceID is supported, false otherwise."
             },
             "functionSelector": "01ffc9a7",
-            "id": 2293,
+            "id": 2731,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "supportsInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2289,
+              "id": 2727,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2288,
+                  "id": 2726,
                   "mutability": "mutable",
                   "name": "_interfaceID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2293,
+                  "scope": 2731,
                   "src": "513:19:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -108,7 +108,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 2287,
+                    "id": 2725,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "513:6:17",
@@ -123,16 +123,16 @@
               "src": "512:21:17"
             },
             "returnParameters": {
-              "id": 2292,
+              "id": 2730,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2291,
+                  "id": 2729,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2293,
+                  "scope": 2731,
                   "src": "581:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -141,7 +141,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2290,
+                    "id": 2728,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "581:4:17",
@@ -155,14 +155,14 @@
               ],
               "src": "580:6:17"
             },
-            "scope": 2294,
+            "scope": 2732,
             "src": "486:101:17",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2295,
+        "scope": 2733,
         "src": "182:407:17"
       }
     ],
@@ -172,15 +172,15 @@
     "absolutePath": "/Users/fahmi/Downloads/Fahmi Learn/Blockchain/ScratchNFT/Belajar-NFT-Part-1/contracts/utils/erc165.sol",
     "exportedSymbols": {
       "ERC165": [
-        2294
+        2732
       ]
     },
-    "id": 2295,
+    "id": 2733,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2284,
+        "id": 2722,
         "literals": [
           "solidity",
           ">=",
@@ -199,44 +199,44 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2285,
+          "id": 2723,
           "nodeType": "StructuredDocumentation",
           "src": "66:115:17",
           "text": " @dev A standard for detecting smart contract interfaces.\n See: https://eips.ethereum.org/EIPS/eip-165."
         },
         "fullyImplemented": false,
-        "id": 2294,
+        "id": 2732,
         "linearizedBaseContracts": [
-          2294
+          2732
         ],
         "name": "ERC165",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 2286,
+              "id": 2724,
               "nodeType": "StructuredDocumentation",
               "src": "205:276:17",
               "text": " @dev Checks if the smart contract includes a specific interface.\n This function uses less than 30,000 gas.\n @param _interfaceID The interface identifier, as specified in ERC-165.\n @return True if _interfaceID is supported, false otherwise."
             },
             "functionSelector": "01ffc9a7",
-            "id": 2293,
+            "id": 2731,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "supportsInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2289,
+              "id": 2727,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2288,
+                  "id": 2726,
                   "mutability": "mutable",
                   "name": "_interfaceID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2293,
+                  "scope": 2731,
                   "src": "513:19:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -245,7 +245,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 2287,
+                    "id": 2725,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "513:6:17",
@@ -260,16 +260,16 @@
               "src": "512:21:17"
             },
             "returnParameters": {
-              "id": 2292,
+              "id": 2730,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2291,
+                  "id": 2729,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2293,
+                  "scope": 2731,
                   "src": "581:4:17",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -278,7 +278,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2290,
+                    "id": 2728,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "581:4:17",
@@ -292,14 +292,14 @@
               ],
               "src": "580:6:17"
             },
-            "scope": 2294,
+            "scope": 2732,
             "src": "486:101:17",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2295,
+        "scope": 2733,
         "src": "182:407:17"
       }
     ],
@@ -311,7 +311,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-24T08:17:50.011Z",
+  "updatedAt": "2021-03-30T09:31:53.135Z",
   "devdoc": {
     "details": "A standard for detecting smart contract interfaces. See: https://eips.ethereum.org/EIPS/eip-165.",
     "kind": "dev",
