@@ -3,8 +3,9 @@ pragma solidity ^0.8.0;
 
 import "./ownership/ownable.sol";
 import "./utils/address-utils.sol";
+import "./verifier/signature-verifier.sol";
 
-contract TradeMarket is Ownable {
+contract TradeMarket is Ownable, SignatureVerifier {
     /** @notice Log for a user that buys a token.
      * @param buyer token buyer
      * @param owner token owner
@@ -19,32 +20,41 @@ contract TradeMarket is Ownable {
     );
 
     /** @notice Buy a token from marketplace.
-     * @dev Throws error unless the token is valid, token is on sale, and
-     * ethers sent is more than or equal item sale price.
+     * @dev Throws error unless the token is valid, token is on sale,
+     * ethers sent is more than or equal item sale price, buyer address is not ZERO,
+     * seller signer is successfully recovered, trade market is already approved.
      * @param _buyer buyer address.
+     * @param _seller seller address.
      * @param _token The token id.
+     * @param _price Token price in wei.
+     * @param _originalContractAddress Token's contract address.
+     * @param _messageHash Seller message hash that prompted during sell action.
+     * @param _signature Seller signature hash of the signed message.
      */
     function buyToken(
         address _buyer,
         address payable _seller,
         uint256 _token,
         uint256 _price,
-        address _originalContractAddress
+        address _originalContractAddress,
+        bytes32 _messageHash,
+        bytes calldata _signature
     ) external payable returns (bool success) {
         // Revert if the address is 0x000000
-        require(_buyer != address(0), "ZERO ADDRESS");
+        require(_buyer != address(0), "ZERO_ADDRESS");
+        // Check the seller hash and signature
+        address _actualSeller = super.recoverSigner(_messageHash, _signature);
+        // Check if the seller inputted is as the same as token seller
+        require(_actualSeller == _seller, "HASH_NOT_MATCH");
         // Check if the ethers sent is equals or more than price
-        require(_price >= msg.value, "Insufficient Funds");
+        require(_price >= msg.value, "INSUFFICIENT_FUNDS");
         // Get the token owner
         address tokenOwner = ownerOfToken(_originalContractAddress, _token);
-        require(
-            tokenOwner == _seller,
-            "Token is not valid, or not on sale by the seller"
-        );
+        require(tokenOwner == _seller, "NOT_OWNER_OR_OPERATOR");
         // Check if the Trade market is operator
         bool isOperator =
             isAlreadyApproved(_originalContractAddress, tokenOwner);
-        require(isOperator, "Not Operator, Cannot Operate");
+        require(isOperator, "NOT_OPERATOR");
         // Transfer Money or Ethers to Seller
         _seller.transfer(_price);
         // Transfer Token to the buyer

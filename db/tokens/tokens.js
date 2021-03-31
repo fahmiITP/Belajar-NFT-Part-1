@@ -5,7 +5,7 @@ const config = require("../config");
 /// Get all tokens on a contract
 async function getUserTokens(token) {
   const rows = await db.query(
-    `SELECT id, token_id, token_owner, contract_address, name, description, image 
+    `SELECT id, token_id, token_owner, contract_address, name, description, image, isOnSale, price 
         FROM token WHERE contract_address = "${token.contract_address}" AND token_owner = "${token.owner_address}"`
   );
 
@@ -15,7 +15,7 @@ async function getUserTokens(token) {
 /// Get all user tokens
 async function getAllUserTokens(token) {
   const rows = await db.query(
-    `SELECT id, token_id, token_owner, contract_address, name, description, image 
+    `SELECT id, token_id, token_owner, contract_address, name, description, image, isOnSale, price
         FROM token WHERE token_owner = "${token.owner_address}"`
   );
 
@@ -92,7 +92,11 @@ async function transfer(token) {
 /// Update Token Sale State
 async function updateTokenSaleState(token) {
   const result = await db.query(
-    `UPDATE token SET isOnSale = ${token.isOnSale}, price = ${token.price} 
+    `UPDATE token SET 
+    isOnSale = ${token.isOnSale}, 
+    price = ${token.price}, 
+    msgHash = "${token.msgHash}", 
+    signature = ${token.signature}
     WHERE token_id = ${token.token_id} AND contract_address LIKE "${token.contract_address}" 
     AND token_owner LIKE "${token.token_owner}"`
   );

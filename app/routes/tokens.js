@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const token = require("../../db/tokens/tokens");
-const addTokenSaleColumn = require("../../db/updates/1_add_token_sale_columns");
 
 /* 
     GET User Token. 
@@ -84,28 +83,6 @@ router.post("/transfer", async function (req, res, next) {
   } catch (err) {
     console.error(`Error while transfering token`, err.message);
     next(err);
-  }
-});
-
-/* POST Update Token Sale State */
-router.post("/updateTokenSaleState", async function (req, res, next) {
-  try {
-    res.json(await token.updateTokenSaleState(req.body));
-  } catch (err) {
-    if (err.message.includes("Unknown column 'isOnSale'")) {
-      /// Create a new columns that is "isOnSale" and "price"
-      try {
-        /// Add token sale columns
-        await addTokenSaleColumn.addTokenSaleColumn();
-
-        /// Retry the process
-        res.json(await token.updateTokenSaleState(req.body));
-      } catch (error) {
-        next(error);
-      }
-    } else {
-      next(err);
-    }
   }
 });
 

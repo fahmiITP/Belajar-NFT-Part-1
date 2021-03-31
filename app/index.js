@@ -1,12 +1,13 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var abiEncoder = require("../services/encodeAbi");
-var getContractBytecode = require("../services/getContractBytecode");
-var getContractAbi = require("../services/getContractAbi");
-const signature = require("../services/signature_verifier/signature_verifier");
+var abiEncoder = require("../services/user_contract/encodeAbi");
+var getContractBytecode = require("../services/user_contract/getUserContractBytecode");
+var getContractAbi = require("../services/user_contract/getUserContractAbi");
 const userRouter = require("./routes/users");
 const contractRouter = require("./routes/contracts");
 const tokenRouter = require("./routes/tokens");
+const marketRouter = require("./routes/market_contract/market_contract");
+const marketplaceRouter = require("./routes/marketplace");
 var app = express();
 var cors = require("cors");
 
@@ -48,24 +49,17 @@ app.get("/", (req, res) => {
 // Users Routes
 app.use("/users", userRouter);
 
-// Contracts Route
+// User Contracts Route
 app.use("/contracts", contractRouter);
 
-// Contracts Route
+// Tokens Route
 app.use("/tokens", tokenRouter);
 
-// Encode Message
-app.post("/encodeMessage", (req, res) => {
-  let hashedMessage = signature(
-    req.body.sellerAddress,
-    req.body.originalContractAddress,
-    req.body.price,
-    req.body.tradeMarketAddress,
-    req.body.tokenId
-  );
+// Market Contract Route
+app.use("/market", marketRouter);
 
-  res.send({ message: hashedMessage });
-});
+// Marketplace DB Route
+app.use("/marketplace", marketplaceRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
