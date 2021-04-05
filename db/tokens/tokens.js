@@ -110,6 +110,27 @@ async function updateTokenSaleState(token) {
   return { message };
 }
 
+/// Cancel Token Sale
+async function cancelTokenSale(token) {
+  const result = await db.query(
+    `UPDATE token SET 
+    isOnSale = 0, 
+    price = NULL, 
+    msgHash = NULL, 
+    signature = NULL
+    WHERE token_id = ${token.token_id} AND contract_address LIKE "${token.contract_address}" 
+    AND token_owner LIKE "${token.token_owner}"`
+  );
+
+  let message = "Error in cancelling token listing";
+
+  if (result.affectedRows) {
+    message = "Token is now cancelled from listing";
+  }
+
+  return { message };
+}
+
 module.exports = {
   getUserTokens,
   getOneTokenFromContract,
@@ -118,4 +139,5 @@ module.exports = {
   burn,
   transfer,
   updateTokenSaleState,
+  cancelTokenSale,
 };

@@ -59,6 +59,17 @@ module.exports = {
       port: 8545, // Standard Ethereum port (default: none)
       network_id: "*", // Any network (default: none)
     },
+    // Tomochain Testnet
+    tomotestnet: {
+      provider: () =>
+        new HDWalletProvider(
+          process.env.MNEMONIC,
+          "https://testnet.tomochain.com"
+        ),
+      network_id: "89",
+      gas: 3000000,
+      // gasPrice: 10000000000000, // TomoChain requires min 10 TOMO to deploy, to fight spamming attacks
+    },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port

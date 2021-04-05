@@ -62,8 +62,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -76,8 +75,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -90,8 +88,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -153,8 +150,7 @@
         }
       ],
       "stateMutability": "payable",
-      "type": "function",
-      "payable": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"token\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"LogBuyToken\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"CANNOT_TRANSFER_TO_ZERO_ADDRESS\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"NOT_CURRENT_OWNER\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_buyer\",\"type\":\"address\"},{\"internalType\":\"address payable\",\"name\":\"_seller\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_token\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_originalContractAddress\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"_messageHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_signature\",\"type\":\"bytes\"}],\"name\":\"buyToken\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"LogBuyToken(address,address,uint256,uint256)\":{\"params\":{\"buyer\":\"token buyer\",\"owner\":\"token owner\",\"price\":\"The token price.\",\"token\":\"The token id.\"}}},\"kind\":\"dev\",\"methods\":{\"buyToken(address,address,uint256,uint256,address,bytes32,bytes)\":{\"details\":\"Throws error unless the token is valid, token is on sale, ethers sent is more than or equal item sale price, buyer address is not ZERO, seller signer is successfully recovered, trade market is already approved.\",\"params\":{\"_buyer\":\"buyer address.\",\"_messageHash\":\"Seller message hash that prompted during sell action.\",\"_originalContractAddress\":\"Token's contract address.\",\"_price\":\"Token price in wei.\",\"_seller\":\"seller address.\",\"_signature\":\"Seller signature hash of the signed message.\",\"_token\":\"The token id.\"}},\"transferOwnership(address)\":{\"details\":\"Allows the current owner to transfer control of the contract to a newOwner.\",\"params\":{\"_newOwner\":\"The address to transfer ownership to.\"}}},\"version\":1},\"userdoc\":{\"events\":{\"LogBuyToken(address,address,uint256,uint256)\":{\"notice\":\"Log for a user that buys a token.\"}},\"kind\":\"user\",\"methods\":{\"buyToken(address,address,uint256,uint256,address,bytes32,bytes)\":{\"notice\":\"Buy a token from marketplace.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/fahmi/Downloads/Fahmi Learn/Blockchain/ScratchNFT/Belajar-NFT-Part-1/contracts/TradeMarket.sol\":\"TradeMarket\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/fahmi/Downloads/Fahmi Learn/Blockchain/ScratchNFT/Belajar-NFT-Part-1/contracts/TradeMarket.sol\":{\"keccak256\":\"0xbb0e39d950a45cc5ab40a6a90437033a06f8e5babedbf0b009e20f7605f661af\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f4e6a6e70ecba2a77960172e028f56fdbaa7a5f14193f6f99d852b78481ec926\",\"dweb:/ipfs/QmYDvK1CaLDtCwmnEbKW2PBobVupmDXc7rYTvqEnFdKBTL\"]},\"/Users/fahmi/Downloads/Fahmi Learn/Blockchain/ScratchNFT/Belajar-NFT-Part-1/contracts/ownership/ownable.sol\":{\"keccak256\":\"0xa1e6c72b1b93fc88a4ec4ca6f7fb49399cb8eb1204422737845f2ea9029a2c56\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://32a7cf03ae4ee82b47e999374ec7c4f899ac7c5b980b10343a100f6668c63cb5\",\"dweb:/ipfs/QmUVZZorkw8RF77LT4oqzrxs9nbe8WHwu7RppnvaSW45ct\"]},\"/Users/fahmi/Downloads/Fahmi Learn/Blockchain/ScratchNFT/Belajar-NFT-Part-1/contracts/utils/address-utils.sol\":{\"keccak256\":\"0x55d056e00732f0b3af62133a302fa79194d7571eeebc9826b4c929e14d3420ad\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://141c8d4bad1547b2131a4d43c72b82dec6f84f27f247e370c9fb1c6635fbab5a\",\"dweb:/ipfs/QmY1rduUVG1P8BKcrQAQfLqcV1io1b7fbZ4Wpfd95REGi6\"]},\"/Users/fahmi/Downloads/Fahmi Learn/Blockchain/ScratchNFT/Belajar-NFT-Part-1/contracts/verifier/signature-verifier.sol\":{\"keccak256\":\"0x1a861859e2b03c2fffbeb5c4879c56e9024a3c8958fb31db9557080f7bc705d9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://950d3ce5ce285f33587f0071d8e02ecb2d73fdffd781ec32d6d3c66fa13123fa\",\"dweb:/ipfs/QmYJGdK3ZLioSZVZSGboxdHS4uyuBpQuwWwsyVUJV88Avp\"]}},\"version\":1}",
@@ -15268,11 +15264,16 @@
       "links": {},
       "address": "0x252c74F9968F7175954307A2bEb2eb3a070cF636",
       "transactionHash": "0xa313c10d147b9809c3d957578189e47f5c1db843503dc63cbf25ba4b6c64d1a3"
+    },
+    "1617585314191": {
+      "events": {},
+      "links": {},
+      "address": "0xAE08c27a519d454652969E245551beA9ac6c5990",
+      "transactionHash": "0x79b9e6cd56f6919c7a8a7d47ef463e417fd84ec4614c7a45380110a2f4af3b6a"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-31T06:00:56.417Z",
-  "networkType": "ethereum",
+  "updatedAt": "2021-04-05T08:02:22.557Z",
   "devdoc": {
     "events": {
       "LogBuyToken(address,address,uint256,uint256)": {
