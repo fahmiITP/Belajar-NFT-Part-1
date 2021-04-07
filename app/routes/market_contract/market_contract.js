@@ -5,13 +5,14 @@ const token = require("../../../db/tokens/tokens");
 const addTokenSaleColumn = require("../../../db/updates/1_add_token_sale_columns");
 const addSignatureColumns = require("../../../db/updates/2_add_token_signature_columns");
 
-/* Get One Contract. */
+/* 
+    GET all on-sale token
+*/
 router.post("/", async function (req, res, next) {
   try {
-    let result = getContractAbi();
-    res.send(result);
+    res.json(await getContractAbi());
   } catch (err) {
-    console.error(`Error while getting contract abi`, err.message);
+    console.error(`Error while getting tokens `, err.message);
     next(err);
   }
 });

@@ -14,4 +14,16 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+/* 
+    GET all on-sale token
+*/
+router.post("/magicword", async function (req, res, next) {
+  try {
+    res.json(await marketplace.getTokenHash(req.body));
+  } catch (err) {
+    console.error(`Error while getting token data `, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;

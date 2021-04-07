@@ -96,7 +96,7 @@ async function updateTokenSaleState(token) {
     isOnSale = ${token.isOnSale}, 
     price = ${token.price}, 
     msgHash = "${token.msgHash}", 
-    signature = ${token.signature}
+    signature = "${token.signature}"
     WHERE token_id = ${token.token_id} AND contract_address LIKE "${token.contract_address}" 
     AND token_owner LIKE "${token.token_owner}"`
   );
