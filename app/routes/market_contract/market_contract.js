@@ -40,7 +40,16 @@ router.post("/updateTokenSaleState", async function (req, res, next) {
             /// Retry the process
             res.json(await token.updateTokenSaleState(req.body));
           } catch (error2) {
-            next(error2);
+            if (error.message.includes("Duplicate column name 'msgHash'")) {
+              try {
+                /// Retry the process
+                res.json(
+                  await token.updateTokenOwnerAndRemoveListing(req.body)
+                );
+              } catch (error3) {
+                next(error3);
+              }
+            }
           }
         }
       }
@@ -73,7 +82,58 @@ router.post("/cancelTokenSale", async function (req, res, next) {
             /// Retry the process
             res.json(await token.cancelTokenSale(req.body));
           } catch (error2) {
-            next(error2);
+            if (error.message.includes("Duplicate column name 'msgHash'")) {
+              try {
+                /// Retry the process
+                res.json(
+                  await token.updateTokenOwnerAndRemoveListing(req.body)
+                );
+              } catch (error3) {
+                next(error3);
+              }
+            }
+          }
+        }
+      }
+    } else {
+      next(err);
+    }
+  }
+});
+
+/* POST Update Token Owner and Remove from Listing */
+router.post("/finalizeBuy", async function (req, res, next) {
+  try {
+    res.json(await token.updateTokenOwnerAndRemoveListing(req.body));
+  } catch (err) {
+    if (err.message.includes("Unknown column")) {
+      /// Create a new columns that is "isOnSale" and "price"
+      try {
+        /// Add token sale columns
+        await addTokenSaleColumn.addTokenSaleColumn();
+
+        /// Retry the process
+        res.json(await token.updateTokenOwnerAndRemoveListing(req.body));
+      } catch (error) {
+        if (error.message.includes("Duplicate column name 'isOnSale'")) {
+          /// Create a new columns that is "isOnSale" and "price"
+          try {
+            /// Add token sale columns
+            await addSignatureColumns.addSignatureColumns();
+
+            /// Retry the process
+            res.json(await token.updateTokenOwnerAndRemoveListing(req.body));
+          } catch (error2) {
+            if (error.message.includes("Duplicate column name 'msgHash'")) {
+              try {
+                /// Retry the process
+                res.json(
+                  await token.updateTokenOwnerAndRemoveListing(req.body)
+                );
+              } catch (error3) {
+                next(error3);
+              }
+            }
           }
         }
       }

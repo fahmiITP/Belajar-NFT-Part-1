@@ -110,6 +110,28 @@ async function updateTokenSaleState(token) {
   return { message };
 }
 
+/// Update Token Owner and Remove Listing
+async function updateTokenOwnerAndRemoveListing(token) {
+  const result = await db.query(
+    `UPDATE token SET 
+    isOnSale = 0, 
+    price = NULL, 
+    msgHash = NULL, 
+    signature = NULL,
+    token_owner = "${token.owner_address}"
+    WHERE token_id = ${token.token_id} AND contract_address LIKE "${token.contract_address}" 
+    `
+  );
+
+  let message = "Error in placing token on sale";
+
+  if (result.affectedRows) {
+    message = "Token Updated Successfully";
+  }
+
+  return { message };
+}
+
 /// Cancel Token Sale
 async function cancelTokenSale(token) {
   const result = await db.query(
@@ -140,4 +162,5 @@ module.exports = {
   transfer,
   updateTokenSaleState,
   cancelTokenSale,
+  updateTokenOwnerAndRemoveListing,
 };
