@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@openzeppelin/contracts": "^3.4.1",
+    "@openzeppelin/truffle-upgrades": "^1.5.1",
     "dotenv": "^8.2.0",
     "openzeppelin-solidity": "^3.4.1"
   },

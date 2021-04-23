@@ -1,0 +1,119 @@
+{
+  "manifestVersion": "3.1",
+  "impls": {
+    "1d0a35e1f1ed320dcd5a7ea57034455dca56c6b318d7adc239675c298bbc34d0": {
+      "address": "0x87526142F3DB05dAe0b7A4685920F31197183EC7",
+      "txHash": "0x9d1adef7ea746a41cd522ed4cba170be137e51a315b71cd65ac81a6ca5b53c41",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "upgradable/intializable.sol:24"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "upgradable/intializable.sol:29"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "upgradable/context-upgreadable.sol:32"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "upgradable/ownable-upgreadable.sol:21"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "upgradable/ownable-upgreadable.sol:82"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_bool": {
+            "label": "bool"
+          }
+        }
+      }
+    },
+    "17a2f7558b77a8a7dab05d05cfa90d22baa0ec1dafb732a3dd7cd2bcddb1f293": {
+      "address": "0x31C117f9B1b56439559DE7Ff867DB696dBf27bC1",
+      "txHash": "0xb36adebb62e14a7a8d5ccfb57286d79a575ac57e951f33b0595bc0b04bb03f3a",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "upgradable/intializable.sol:24"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "upgradable/intializable.sol:29"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "upgradable/context-upgreadable.sol:32"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "upgradable/ownable-upgreadable.sol:21"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "upgradable/ownable-upgreadable.sol:82"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_bool": {
+            "label": "bool"
+          }
+        }
+      }
+    }
+  },
+  "admin": {
+    "address": "0xf365d0408A79C5BF4F14a5e8Da56CdC7d2afaC4C",
+    "txHash": "0x305aa3015bffe5252651c4476c611575cdc06b2712c3b90e925dec41cf87572a"
+  }
+}

@@ -4,19 +4,19 @@ const solc = require("solc");
 
 module.exports = function () {
   // Find the path of UserContract.sol inside the folder 'contract' in the project
-  const UserContractPath = path.resolve(
+  const ContractPath = path.resolve(
     __dirname,
-    "../contracts",
-    "UserContractFlattened.sol"
+    "../../contracts",
+    "TradeMarketV2Flattened.sol"
   );
-  const UserContract = fs.readFileSync(UserContractPath, "utf8");
+  const Contract = fs.readFileSync(ContractPath, "utf8");
 
   // Create Solc input
   let input = {
     language: "Solidity",
     sources: {
-      "UserContractFlattened.sol": {
-        content: UserContract,
+      "TradeMarketV2Flattened.sol": {
+        content: Contract,
       },
     },
     settings: {
